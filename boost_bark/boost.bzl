@@ -220,9 +220,9 @@ def boost_deps():
             ],
         )
 
-    if "boost" not in native.existing_rules():
+    if "boost_bark" not in native.existing_rules():
         http_archive(
-            name = "boost",
+            name = "boost_bark",
             build_file = "@com_github_nelhage_rules_boost//:BUILD.boost",
             patch_cmds = ["rm -f doc/pdf/BUILD"],
             sha256 = "afff36d392885120bcac079148c177d1f6f7730ec3d47233aa51b0afa4db94a5",
