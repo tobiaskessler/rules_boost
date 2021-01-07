@@ -193,7 +193,7 @@ def boost_deps():
             build_file = "@com_github_nelhage_rules_boost//:BUILD.bzip2",
             sha256 = "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
             strip_prefix = "bzip2-1.0.8",
-            url = "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
+            urls = ["https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz"],
         )
 
     if "org_lzma_lzma" not in native.existing_rules():
@@ -239,5 +239,5 @@ def boost_deps():
             name = "openssl",
             sha256 = "84afcec7a9ce3a72fde95dc42d52bc6662df5976bdd3d440b3e7e7543b7031b9",
             strip_prefix = "boringssl-57c37a99b6a9f523b10344b7b6b93ce9ad1da795",
-            url = "https://github.com/google/boringssl/archive/57c37a99b6a9f523b10344b7b6b93ce9ad1da795.tar.gz",
+            urls = ["https://github.com/google/boringssl/archive/57c37a99b6a9f523b10344b7b6b93ce9ad1da795.tar.gz"],
         )
