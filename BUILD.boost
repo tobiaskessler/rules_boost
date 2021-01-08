@@ -9,7 +9,7 @@ _w_no_deprecated = selects.with_or({
     "//conditions:default": [],
 })
 
-config_setting(
+native.config_setting(
     name = "linux",
     constraint_values = [
         "@bazel_tools//platforms:linux",
@@ -1838,7 +1838,7 @@ boost_library(
         ],
         ":windows_x86_64": [],
     }),
-    local_defines = select({
+    defines = select({
         ":linux_arm": [],
         ":linux_ppc": [],
         ":linux_x86_64": [],
@@ -2218,7 +2218,7 @@ cc_library(
     srcs = ["libs/log/src/dump_ssse3.cpp"] + hdr_list("log"),
     hdrs = [],
     copts = ["-msse4.2"],
-    local_defines = BOOST_LOG_DEFINES,
+    defines = BOOST_LOG_DEFINES,
     includes = [],
     licenses = ["notice"],
     linkopts = [],
@@ -2235,7 +2235,7 @@ boost_library(
     copts = BOOST_LOG_CFLAGS + [
         "-Iexternal/boost/libs/log/src/",
     ],
-    local_defines = BOOST_LOG_DEFINES,
+    defines = BOOST_LOG_DEFINES,
     exclude_src = [
         "libs/log/src/dump_avx2.cpp",
         "libs/log/src/dump_ssse3.cpp",
