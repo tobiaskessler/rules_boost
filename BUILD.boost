@@ -1,4 +1,4 @@
-load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
+#load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@bazel_skylib//lib:selects.bzl", "selects")
 load("@com_github_nelhage_rules_boost//:boost_bark/boost.bzl", "boost_library", "boost_so_library", "hdr_list")
 
@@ -96,15 +96,39 @@ config_setting(
 )
 
 # Rename .asm to .S so that it will be handled with the C preprocessor.
-[copy_file(
-    name = "rename_%s" % name,
-    src = "libs/context/src/asm/%s_x86_64_ms_pe_masm.asm" % name,
-    out = "libs/context/src/asm/%s_x86_64_ms_pe_masm.S" % name,
-) for name in [
-    "make",
-    "jump",
-    "ontop",
-]]
+#[copy_file(
+#    name = "rename_%s" % name,
+#    src = "libs/context/src/asm/%s_x86_64_ms_pe_masm.asm" % name,
+#    out = "libs/context/src/asm/%s_x86_64_ms_pe_masm.S" % name,
+#) for name in [
+#    "make",
+#    "jump",
+#    "ontop",
+#]]
+
+genrule(
+   name = "make_rename",
+   srcs = ["libs/context/src/asm/make_x86_64_ms_pe_masm.asm"],
+   outs = ["libs/context/src/asm/make_x86_64_ms_pe_masm.S"],
+   cmd = "cp $< $@",
+)
+
+genrule(
+   name = "jump_rename",
+   srcs = ["libs/context/src/asm/jump_x86_64_ms_pe_masm.asm"],
+   outs = ["libs/context/src/asm/jump_x86_64_ms_pe_masm.S"],
+   cmd = "cp $< $@",
+)
+
+genrule(
+   name = "ontop_rename",
+   srcs = ["libs/context/src/asm/ontop_x86_64_ms_pe_masm.asm"],
+   outs = ["libs/context/src/asm/ontop_x86_64_ms_pe_masm.S"],
+   cmd = "cp $< $@",
+)
+
+
+
 
 BOOST_CTX_ASM_SOURCES = select({
     ":linux_aarch64": [
