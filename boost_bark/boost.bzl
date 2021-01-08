@@ -32,11 +32,10 @@ def srcs_list(library_name, exclude):
     return native.glob(
         [p % (library_name,) for p in srcs_patterns],
         exclude = exclude,
-        allow_empty = True,
     )
 
 def hdr_list(library_name, exclude = []):
-    return native.glob([p % (library_name,) for p in hdrs_patterns], exclude = exclude, allow_empty = True)
+    return native.glob([p % (library_name,) for p in hdrs_patterns], exclude = exclude)
 
 def boost_library(
         name,
